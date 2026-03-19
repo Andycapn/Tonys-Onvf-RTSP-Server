@@ -374,7 +374,6 @@ class MediaMTXManager:
                         'sourceOnDemandCloseAfter': '10s',
                         'record': False,
                         'overridePublisher': True,
-                        'fallback': '',
                     }
                 
 
@@ -448,7 +447,6 @@ class MediaMTXManager:
                         
                         # Republishing settings
                         'disablePublisherOverride': False,
-                        'fallback': '',
                     }
                 
                 config['paths'][f'{camera.path_name}_sub'] = sub_path_cfg
