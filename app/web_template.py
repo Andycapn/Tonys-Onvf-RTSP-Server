@@ -2524,7 +2524,7 @@ def get_web_ui_html(current_settings=None):
             
             // Construct stream URL - Use current protocol if possible to support reverse proxies
             const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
-            const streamUrl = `http://${{serverIp}}:8888/${{pathName}}_sub/index.m3u8${{credentials}}`;
+            const streamUrl = `http://${{serverIp}}:8898/${{pathName}}_sub/index.m3u8${{credentials}}`;
             
             if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {{
                 // Native HLS support (Safari)

@@ -215,7 +215,7 @@ class MediaMTXManager:
             'rtpAddress': ':18000',
             'rtcpAddress': ':18001',
             'webrtcAddress': ':8889',
-            'hlsAddress': ':8888',
+            'hlsAddress': ':8898',
             
             # ===== HLS SETTINGS - Optimized for multiple viewers =====
             'hlsAlwaysRemux': True,
@@ -351,6 +351,7 @@ class MediaMTXManager:
                         f'-i {safe_source} '
                         f'-vf "scale={tgt_w}:{tgt_h}:force_original_aspect_ratio=decrease,pad={tgt_w}:{tgt_h}:(ow-iw)/2:(oh-ih)/2,format=yuv420p" '
                         f'{ff_process} '
+                        f'-an '
                         f'-profile:v high -level 4.2 '
                         f'-threads 2 -g {tgt_fps} -sc_threshold 0 '
                         f'-b:v 2500k -maxrate 2500k -bufsize 5000k '
@@ -415,6 +416,7 @@ class MediaMTXManager:
                         f'-i {safe_source} '
                         f'-vf "scale={tgt_w}:{tgt_h}:force_original_aspect_ratio=decrease,pad={tgt_w}:{tgt_h}:(ow-iw)/2:(oh-ih)/2,format=yuv420p" '
                         f'{ff_process} '
+                        f'-an '
                         f'-profile:v baseline -level 4.1 '
                         f'-threads 2 -g {tgt_fps} -sc_threshold 0 '
                         f'-b:v 800k -maxrate 800k -bufsize 1600k '
@@ -590,6 +592,7 @@ class MediaMTXManager:
                             f'-filter_complex "{filter_complex}" '
                             f'-filter_complex_threads 0 '
                             f'-map "[outv]" '
+                            f'-an '
                             f'{encoder_args} '
                             f'-profile:v high -level 4.2 '
                             f'-threads 0 '

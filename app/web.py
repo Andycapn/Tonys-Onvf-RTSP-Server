@@ -452,7 +452,7 @@ def create_web_app(manager):
                 ffprobe_path,
                 '-v', 'error',
                 '-rtsp_transport', 'tcp',  # Use TCP instead of UDP for better compatibility
-                '-select_streams', 'v:0',
+                '-select_streams', 'v',
                 '-show_entries', 'stream=width,height,r_frame_rate',
                 '-of', 'json',
                 stream_url
