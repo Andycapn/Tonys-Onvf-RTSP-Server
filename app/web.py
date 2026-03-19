@@ -447,11 +447,9 @@ def create_web_app(manager):
             print(f"  Probing stream: {stream_url}")
             
             # Run ffprobe to get stream info
-            # Use TCP for better compatibility with cameras
             cmd = [
                 ffprobe_path,
                 '-v', 'error',
-                '-rtsp_transport', 'tcp',  # Use TCP instead of UDP for better compatibility
                 '-select_streams', 'v',
                 '-show_entries', 'stream=width,height,r_frame_rate',
                 '-of', 'json',

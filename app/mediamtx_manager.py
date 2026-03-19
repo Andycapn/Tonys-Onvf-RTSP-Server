@@ -236,7 +236,7 @@ class MediaMTXManager:
             'authHTTPAddress': f'http://localhost:{WEB_UI_PORT}/api/auth',
             
             # ===== PROTOCOL SETTINGS =====
-            'rtspTransports': ['tcp'],  # TCP only for reliability
+            'rtspTransports': ['udp'],  # UDP for compatibility
             
             # ===== PERFORMANCE TUNING =====
             # Timeout settings - prevent premature disconnects
@@ -302,7 +302,7 @@ class MediaMTXManager:
         ff_global = ff_advanced.get('globalArgs', '-hide_banner -loglevel error')
         # Optimized for stability: using -timeout (correct option name, not -stimeout)
         # Timeout is in microseconds: 10000000 = 10 seconds
-        ff_input = ff_advanced.get('inputArgs', '-rtsp_transport tcp -timeout 10000000')
+        ff_input = ff_advanced.get('inputArgs', '-rtsp_transport udp -timeout 10000000')
         ff_process = ff_advanced.get('processArgs', '-c:v libx264 -preset ultrafast -tune zerolatency -g 30')
         
         
@@ -362,13 +362,13 @@ class MediaMTXManager:
                         'source': 'publisher',
                         'runOnInit': cmd,
                         'runOnInitRestart': True,  # Auto-restart enabled to recover from connection failures
-                        'rtspTransport': 'tcp',
+                        'rtspTransport': 'udp',
                         'overridePublisher': True,
                     }
                 else:
                     main_path_cfg = {
                         'source': main_source,
-                        'rtspTransport': 'tcp',
+                        'rtspTransport': 'udp',
                         'sourceOnDemand': True,
                         'sourceOnDemandStartTimeout': '10s',
                         'sourceOnDemandCloseAfter': '10s',
@@ -427,7 +427,7 @@ class MediaMTXManager:
                         'source': 'publisher',
                         'runOnInit': cmd,
                         'runOnInitRestart': True,  # Auto-restart enabled to recover from connection failures
-                        'rtspTransport': 'tcp',
+                        'rtspTransport': 'udp',
                         'sourceOnDemand': False,
                         'overridePublisher': True,
                     }
@@ -435,7 +435,7 @@ class MediaMTXManager:
                     # Standard Proxy Mode
                     sub_path_cfg = {
                         'source': sub_source,
-                        'rtspTransport': 'tcp',
+                        'rtspTransport': 'udp',
                         
                         # On-demand disabled for multiple simultaneous viewers
                         'sourceOnDemand': True,
